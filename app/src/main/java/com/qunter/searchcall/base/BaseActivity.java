@@ -1,6 +1,8 @@
 package com.qunter.searchcall.base;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,12 +18,12 @@ public abstract class BaseActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initVariables();
+        initVariablesAndService();
         initViews(savedInstanceState);
         initState();
     }
     //初始化变量
-    protected abstract void initVariables();
+    protected abstract void initVariablesAndService();
     //初始化控件
     protected abstract void initViews(Bundle savedInstanceState);
 
@@ -42,5 +44,15 @@ public abstract class BaseActivity extends Activity{
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);//calculateStatusColor(Color.WHITE, (int) alphaValue)
         }
+    }
+
+    /**
+     * 跳转到新页面
+     */
+    protected void startActivity(Class classes){
+        Intent intent = new Intent();
+        intent.setClass(getApplicationContext(), classes);
+        //设置要跳转到的页面以及跳转时的动画
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 }
