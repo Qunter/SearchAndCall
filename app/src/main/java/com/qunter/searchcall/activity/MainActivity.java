@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void initViews() {
-        fragments.add(new SchoolInfoFragmActivity());
-        fragments.add(new EventInfoFragmActivity());
-        fragments.add(new FriendInfoFragmActivity());
-        fragments.add(new UserInfoFragmActivity());
+        fragments.add(SchoolInfoFragmActivity.newInstance());
+        fragments.add(EventInfoFragmActivity.newInstance());
+        fragments.add(FriendInfoFragmActivity.newInstance());
+        fragments.add(UserInfoFragmActivity.newInstance());
 
         showFragment(fragments.get(0));
         initBottomNav();
@@ -78,28 +78,9 @@ public class MainActivity extends AppCompatActivity {
                     trx.show(fragments.get(position)).commit();
                 }
                 currentTabIndex = position;
-                //Log.e("currentTabIndex", currentTabIndex+"" );
-                //Log.e("position", position+"" );
                 return true;
             }
         });
-        /*
-        bottomNavigationView.setOnTabSelectedListener((position, wasSelected) -> {
-
-            if (currentTabIndex != position) {
-                FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
-                trx.hide(fragments.get(currentTabIndex));
-                if (!fragments.get(position).isAdded()) {
-                    trx.add(R.id.content, fragments.get(position));
-                }
-                trx.show(fragments.get(position)).commit();
-            }
-            currentTabIndex = position;
-
-            return true;
-        });
-        */
-
     }
     private void showFragment(Fragment fragment) {
         getSupportFragmentManager()

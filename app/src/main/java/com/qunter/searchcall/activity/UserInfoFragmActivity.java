@@ -16,14 +16,13 @@ import com.qunter.searchcall.R;
  */
 
 public class UserInfoFragmActivity extends Fragment {
-    public static SchoolInfoFragmActivity newInstance() {
-        return new SchoolInfoFragmActivity();
+    public static UserInfoFragmActivity newInstance() {
+        return new UserInfoFragmActivity();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Toast.makeText(getContext().getApplicationContext(),"用户界面",Toast.LENGTH_SHORT);
         return inflater.inflate(R.layout.activity_user_info_fragm, container, false);
     }
 }

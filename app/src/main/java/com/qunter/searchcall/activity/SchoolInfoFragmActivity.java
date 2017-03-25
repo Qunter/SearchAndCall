@@ -23,7 +23,6 @@ public class SchoolInfoFragmActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Toast.makeText(getContext().getApplicationContext(),"学校界面",Toast.LENGTH_SHORT);
         return inflater.inflate(R.layout.activity_school_info_fragm, container, false);
     }
 }
