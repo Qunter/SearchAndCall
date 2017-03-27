@@ -7,8 +7,10 @@ package com.qunter.searchcall.entity;
 public class SchoolInfo {
     private String Title;
     private String ImgUrl;
-    public SchoolInfo(String Title,String ImgUrl){
+    private String PageUrl;
+    public SchoolInfo(String Title,String PageUrl,String ImgUrl){
         this.Title = Title;
+        this.PageUrl = PageUrl;
         this.ImgUrl = ImgUrl;
     }
 
@@ -18,5 +20,9 @@ public class SchoolInfo {
 
     public String getImgUrl() {
         return ImgUrl;
+    }
+
+    public String getPageUrl() {
+        return PageUrl;
     }
 }

@@ -1,5 +1,6 @@
 package com.qunter.searchcall.adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -30,6 +31,7 @@ import java.util.List;
 public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAdapter.ViewHolder> {
     private List<SchoolInfo> schoolInfoList;
     private LruCache<String, Bitmap> mImageCache;
+    private Context context;
     private RecyclerView recyclerView;
 
 
@@ -42,8 +44,10 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
             schoolInfoImg = (ImageView) view.findViewById(R.id.item_image);
         }
     }
-    public SchoolInfoListAdapter(List<SchoolInfo> list){
+    public SchoolInfoListAdapter(Context context,List<SchoolInfo> list,RecyclerView recyclerView){
+        this.context = context;
         schoolInfoList = list;
+        this.recyclerView = recyclerView;
         int maxCache = (int) Runtime.getRuntime().maxMemory();
         int cacheSize = maxCache / 8;
         mImageCache = new LruCache<String, Bitmap>(cacheSize) {
@@ -57,7 +61,6 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_school_info,parent,false);
         ViewHolder holder = new ViewHolder(view);
-        recyclerView = (RecyclerView) parent;
         return holder;
     }
 
@@ -65,6 +68,7 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         SchoolInfo schoolInfo = schoolInfoList.get(position);
         holder.schoolInfoTitle.setText(schoolInfo.getTitle());
+        holder.schoolInfoImg.setTag(schoolInfo.getImgUrl());
         if (mImageCache.get(schoolInfo.getImgUrl()) != null) {
             holder.schoolInfoImg.setImageBitmap(mImageCache.get(schoolInfo.getImgUrl()));
         } else {
@@ -79,12 +83,18 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
         return schoolInfoList.size();
     }
 
+
     class ImageTask extends AsyncTask<String, Void, Bitmap> {
 
         private String imageUrl;
 
         @Override
         protected Bitmap doInBackground(String... params) {
+            Bitmap bitmap;
+            if (params[0].equals("")){
+                bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.account_avatar);
+                return bitmap;
+            }
             imageUrl = params[0];
             /*
             Bitmap bitmap = downloadImage();
@@ -93,8 +103,8 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
                 mImageCache.put(imageUrl, bitmap);
             }
             */
-            Bitmap bitmap = downloadImage();
-            if (bitmap != null){
+            bitmap = downloadImage();
+            if (mImageCache.get(imageUrl) == null){
                 mImageCache.put(imageUrl, bitmap);
             }
             return bitmap;
@@ -132,9 +142,9 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
                     con.disconnect();
                 }
             }
-
             return bitmap;
         }
+
 
     }
 }

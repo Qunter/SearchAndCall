@@ -47,7 +47,7 @@ public class SchoolInfoFragmActivity extends Fragment {
                     new Thread(runnable).start();
                     break;
                 case INITRECYLERVIEW:
-                    SchoolInfoListAdapter adapter = new SchoolInfoListAdapter(schoolInfoList);
+                    SchoolInfoListAdapter adapter = new SchoolInfoListAdapter(getContext(),schoolInfoList,schoolRecyclerView);
                     schoolRecyclerView.setAdapter(adapter);
                     break;
             }
@@ -104,12 +104,28 @@ public class SchoolInfoFragmActivity extends Fragment {
         Elements elements = doc.select("[class=tabContent blog]");
         Elements elements1 = elements.select("font");
         Elements elements2 = elements1.select("a");
+        Document dt = null;
         for(Element element : elements2){
-            String mTitle = element.text();
-            String mUrl = element.attr("abs:href");
-            schoolInfoList.add(new SchoolInfo(mTitle,mUrl));
-            Log.e("mytag", mUrl);
-            Log.e("mytag", mTitle );
+            String Title = element.text();
+            String PageUrl = element.attr("abs:href");
+            Connection ct = Jsoup.connect(PageUrl);
+            ct.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
+            try {
+                dt = ct.get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Elements elements3 = dt.select("[class=listpicabs_text_show]");
+            String ImgUrl = "";
+            if(elements3.select("img").first()==null){
+            }else{
+                ImgUrl = elements3.select("img").first().absUrl("src");
+            }
+
+            schoolInfoList.add(new SchoolInfo(Title,PageUrl,ImgUrl));
+            Log.e("mytag", Title);
+            Log.e("mytag", PageUrl );
+            Log.e("mytag", ImgUrl );
         }
         handler.sendEmptyMessage(INITRECYLERVIEW);
     }
