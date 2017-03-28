@@ -77,7 +77,6 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
         }
     }
 
-
     @Override
     public int getItemCount() {
         return schoolInfoList.size();
@@ -96,13 +95,6 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
                 return bitmap;
             }
             imageUrl = params[0];
-            /*
-            Bitmap bitmap = downloadImage();
-            // 如果本地还没缓存该图片，就缓存
-            if (mImageCache.get(imageUrl) == null) {
-                mImageCache.put(imageUrl, bitmap);
-            }
-            */
             bitmap = downloadImage();
             if (mImageCache.get(imageUrl) == null){
                 mImageCache.put(imageUrl, bitmap);
