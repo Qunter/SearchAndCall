@@ -91,16 +91,6 @@ public class SchoolInfoFragmActivity extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*
-        // 获取tbody元素下的所有tr元素
-        Elements elements = doc.select("tbody tr");
-        for(Element element : elements) {
-            String companyName = element.getElementsByTag("company").text();
-            Log.e("jsoup", "公司："+companyName );
-            Log.e("jsoup", "---------------------------------" );
-        }
-        */
-        //“椒麻鸡”和它对应的图片都在<div class="pic">中
         Elements elements = doc.select("[class=tabContent blog]");
         Elements elements1 = elements.select("font");
         Elements elements2 = elements1.select("a");
