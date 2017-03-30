@@ -136,7 +136,5 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
             }
             return bitmap;
         }
-
-
     }
 }

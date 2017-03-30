@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private AHBottomNavigation bottomNavigationView;
     private List<Fragment> fragments = new ArrayList<>();
     private int currentTabIndex;
+    private TextView TitleTv;
+    private String TitleString[] = {"学校资讯","周边活动","我的好友","我的设置"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,24 +35,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void initViews() {
+        //标题栏标题textview初始化
+        TitleTv = (TextView) findViewById(R.id.toolbarTitleTv);
         fragments.add(SchoolInfoFragmActivity.newInstance());
         fragments.add(EventInfoFragmActivity.newInstance());
         fragments.add(FriendInfoFragmActivity.newInstance());
         fragments.add(UserInfoFragmActivity.newInstance());
 
         showFragment(fragments.get(0));
+        TitleTv.setText(TitleString[0]);
         initBottomNav();
 
     }
     private void initBottomNav() {
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.bottom_navigation_view);
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("学校资讯",
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(TitleString[0],
                 R.drawable.ic_tab_temporary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("周边活动",
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(TitleString[1],
                 R.drawable.ic_tab_temporary);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("我的好友",
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(TitleString[2],
                 R.drawable.ic_tab_temporary);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("我的设置",
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(TitleString[3],
                 R.drawable.ic_tab_temporary);
 
         bottomNavigationView.addItem(item1);
@@ -76,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         trx.add(R.id.content, fragments.get(position));
                     }
                     trx.show(fragments.get(position)).commit();
+                    TitleTv.setText(TitleString[position]);
                 }
                 currentTabIndex = position;
                 return true;
