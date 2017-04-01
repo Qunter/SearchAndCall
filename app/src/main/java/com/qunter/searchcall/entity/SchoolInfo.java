@@ -5,6 +5,7 @@ package com.qunter.searchcall.entity;
  */
 
 public class SchoolInfo {
+    //标题，item图标，页面url
     private String Title;
     private String ImgUrl;
     private String PageUrl;

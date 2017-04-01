@@ -24,6 +24,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private Button loginBtn,registerBtn;
     @Override
     protected void initVariablesAndService() {
+        //初始化bmob
         Bmob.initialize(this,"8da888d03200ff2f6b403d064b805d60");
     }
 
