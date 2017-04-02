@@ -113,8 +113,6 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
 
         /**
          * 根据url从网络上下载图片
-         *
-         * @return
          */
         private Bitmap downloadImage() {
             HttpURLConnection con = null;
