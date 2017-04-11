@@ -3,10 +3,10 @@ package com.qunter.searchcall.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.support.v4.util.LruCache;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +16,18 @@ import android.widget.TextView;
 import com.qunter.searchcall.R;
 import com.qunter.searchcall.entity.SchoolInfo;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+
 /**
  * Created by Administrator on 2017/3/25.
  */
 
-public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAdapter.ViewHolder> {
+public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAdapter.ViewHolder>  {
     private List<SchoolInfo> schoolInfoList;
     private LruCache<String, Bitmap> mImageCache;
     private Context context;
@@ -46,7 +45,7 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
     }
     public SchoolInfoListAdapter(Context context,List<SchoolInfo> list,RecyclerView recyclerView){
         this.context = context;
-        schoolInfoList = list;
+        this.schoolInfoList = list;
         this.recyclerView = recyclerView;
         int maxCache = (int) Runtime.getRuntime().maxMemory();
         int cacheSize = maxCache / 8;
@@ -66,9 +65,12 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         SchoolInfo schoolInfo = schoolInfoList.get(position);
         holder.schoolInfoTitle.setText(schoolInfo.getTitle());
         holder.schoolInfoImg.setTag(schoolInfo.getImgUrl());
+        Log.e("schoolimgurl", schoolInfo.getImgUrl());
+        Log.e("tag", position+"");
         if (mImageCache.get(schoolInfo.getImgUrl()) != null) {
             holder.schoolInfoImg.setImageBitmap(mImageCache.get(schoolInfo.getImgUrl()));
         } else {
@@ -82,7 +84,6 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
         return schoolInfoList.size();
     }
 
-
     class ImageTask extends AsyncTask<String, Void, Bitmap> {
 
         private String imageUrl;
@@ -92,25 +93,34 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
             Bitmap bitmap;
             if (params[0].equals("")){
                 bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.account_avatar);
+
                 return bitmap;
             }
             imageUrl = params[0];
+            Log.e("tag", imageUrl);
             bitmap = downloadImage();
             if (mImageCache.get(imageUrl) == null){
                 mImageCache.put(imageUrl, bitmap);
             }
+            if(bitmap!=null)
+                Log.e("tag", "notnull");
             return bitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap result) {
-            // 通过Tag找到我们需要的ImageView，如果该ImageView所在的item已被移出页面，就会直接返回null
+            // 通过Tag找到ImageView，如果该ImageView所在的item已被移出页面，就会直接返回null
+            Log.e("tag", "img url is "+imageUrl);
             ImageView iv = (ImageView) recyclerView.findViewWithTag(imageUrl);
+            if(iv != null)
+                Log.e("tag", "iv not null");
+            if(result != null)
+                Log.e("tag", "result not null");
             if (iv != null && result != null) {
                 iv.setImageBitmap(result);
+                Log.e("tag", "setbitmap");
             }
         }
-
         /**
          * 根据url从网络上下载图片
          */
