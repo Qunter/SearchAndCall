@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(UserInfoFragmActivity.newInstance());
 
         showFragment(fragments.get(0));
+        //标题栏内容随fragment切换而改变
         TitleTv.setText(TitleString[0]);
         initBottomNav();
 

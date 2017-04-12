@@ -97,28 +97,24 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
                 return bitmap;
             }
             imageUrl = params[0];
-            Log.e("tag", imageUrl);
+            //Log.e("tag", imageUrl);
             bitmap = downloadImage();
             if (mImageCache.get(imageUrl) == null){
                 mImageCache.put(imageUrl, bitmap);
             }
-            if(bitmap!=null)
-                Log.e("tag", "notnull");
+            //if(bitmap!=null)
+                //Log.e("tag", "notnull");
             return bitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap result) {
             // 通过Tag找到ImageView，如果该ImageView所在的item已被移出页面，就会直接返回null
-            Log.e("tag", "img url is "+imageUrl);
+            //Log.e("tag", "img url is "+imageUrl);
             ImageView iv = (ImageView) recyclerView.findViewWithTag(imageUrl);
-            if(iv != null)
-                Log.e("tag", "iv not null");
-            if(result != null)
-                Log.e("tag", "result not null");
             if (iv != null && result != null) {
                 iv.setImageBitmap(result);
-                Log.e("tag", "setbitmap");
+                //Log.e("tag", "setbitmap");
             }
         }
         /**

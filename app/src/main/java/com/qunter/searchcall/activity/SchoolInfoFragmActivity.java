@@ -125,10 +125,4 @@ public class SchoolInfoFragmActivity extends Fragment {
     private void initSwipeRefreshLayout(){
 
     }
-    /**
-     * 加载RecyclerView
-     */
-    private void initRecyclerView(){
-
-    }
 }
