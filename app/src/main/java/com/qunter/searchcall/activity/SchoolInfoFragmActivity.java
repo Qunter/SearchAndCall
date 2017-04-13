@@ -1,6 +1,7 @@
 package com.qunter.searchcall.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -35,6 +36,7 @@ import java.util.List;
 
 public class SchoolInfoFragmActivity extends Fragment {
     private List<SchoolInfo> schoolInfoList = new ArrayList<>();
+
     private final int GETJSOUPCONTENT=0x00,INITRECYLERVIEW=0x01;
     private SwipeRefreshLayout schoolSwipeRefreshLayout;
     private RecyclerView schoolRecyclerView;
@@ -48,6 +50,15 @@ public class SchoolInfoFragmActivity extends Fragment {
                     break;
                 case INITRECYLERVIEW:
                     SchoolInfoListAdapter adapter = new SchoolInfoListAdapter(getContext(),schoolInfoList,schoolRecyclerView);
+                    adapter.setOnItemClickListener(new SchoolInfoListAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View view, int position) {
+                            //Log.e("onitemclickTag", schoolInfoList.get(position).getTitle());
+                            Intent intent = new Intent(getContext(),SchoolDateilActivity.class);
+                            intent.putExtra("dateilUrl",schoolInfoList.get(position).getPageUrl());
+                            startActivity(intent);
+                        }
+                    });
                     schoolRecyclerView.setAdapter(adapter);
                     break;
             }
@@ -111,7 +122,6 @@ public class SchoolInfoFragmActivity extends Fragment {
             }else{
                 ImgUrl = elements3.select("img").first().absUrl("src");
             }
-
             schoolInfoList.add(new SchoolInfo(Title,PageUrl,ImgUrl));
             Log.e("mytag", Title);
             Log.e("mytag", PageUrl );
@@ -125,4 +135,5 @@ public class SchoolInfoFragmActivity extends Fragment {
     private void initSwipeRefreshLayout(){
 
     }
+
 }

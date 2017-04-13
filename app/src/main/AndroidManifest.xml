@@ -29,8 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        //注册页面
         <activity android:name=".activity.RegisterActivity"/>
+        //首页
         <activity android:name=".activity.MainActivity"/>
+        //学校资讯详情页面
+        <activity android:name=".activity.SchoolDateilActivity"/>
     </application>
 
 </manifest>

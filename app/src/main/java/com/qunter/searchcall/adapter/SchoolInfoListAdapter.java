@@ -32,6 +32,8 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
     private LruCache<String, Bitmap> mImageCache;
     private Context context;
     private RecyclerView recyclerView;
+    private OnItemClickListener onItemClickListener;
+
 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -64,13 +66,24 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.setIsRecyclable(false);
         SchoolInfo schoolInfo = schoolInfoList.get(position);
         holder.schoolInfoTitle.setText(schoolInfo.getTitle());
         holder.schoolInfoImg.setTag(schoolInfo.getImgUrl());
         Log.e("schoolimgurl", schoolInfo.getImgUrl());
         Log.e("tag", position+"");
+        //判断是否设置了监听器
+        if(onItemClickListener != null){
+            //为ItemView设置监听器
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = holder.getLayoutPosition();
+                    onItemClickListener.onItemClick(holder.itemView,position);
+                }
+            });
+        }
         if (mImageCache.get(schoolInfo.getImgUrl()) != null) {
             holder.schoolInfoImg.setImageBitmap(mImageCache.get(schoolInfo.getImgUrl()));
         } else {
@@ -140,5 +153,18 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
             }
             return bitmap;
         }
+    }
+    /**
+     * 点击事件接口
+     */
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
+    /**
+     * 设置点击事件方法
+     */
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
     }
 }
