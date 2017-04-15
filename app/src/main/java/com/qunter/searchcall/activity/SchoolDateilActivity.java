@@ -55,6 +55,7 @@ public class SchoolDateilActivity extends BaseActivity {
     };
     @Override
     protected void initVariablesAndService() {
+        //获取详情页链接
         dateilUrl = getIntent().getExtras().get("dateilUrl").toString();
         handler.sendEmptyMessage(GETDETAILDATA);
     }
