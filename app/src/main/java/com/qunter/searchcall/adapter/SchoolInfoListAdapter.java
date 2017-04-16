@@ -71,8 +71,8 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
         SchoolInfo schoolInfo = schoolInfoList.get(position);
         holder.schoolInfoTitle.setText(schoolInfo.getTitle());
         holder.schoolInfoImg.setTag(schoolInfo.getImgUrl());
-        Log.e("schoolimgurl", schoolInfo.getImgUrl());
-        Log.e("tag", position+"");
+        //Log.e("schoolimgurl", schoolInfo.getImgUrl());
+        //Log.e("tag", position+"");
         //判断是否设置了监听器
         if(onItemClickListener != null){
             //为ItemView设置监听器

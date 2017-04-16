@@ -35,11 +35,12 @@ import java.util.List;
  */
 
 public class SchoolInfoFragmActivity extends Fragment {
-    private List<SchoolInfo> schoolInfoList = new ArrayList<>();
-
-    private final int GETJSOUPCONTENT=0x00,INITRECYLERVIEW=0x01;
+    private List<SchoolInfo> schoolInfoList;
+    private final int GETJSOUPCONTENT=0x00,INITRECYLERVIEW=0x01,REFRESH=0x02;
     private SwipeRefreshLayout schoolSwipeRefreshLayout;
+    private SchoolInfoListAdapter adapter;
     private RecyclerView schoolRecyclerView;
+    private boolean ifFirstInitData=true;
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -49,7 +50,7 @@ public class SchoolInfoFragmActivity extends Fragment {
                     new Thread(runnable).start();
                     break;
                 case INITRECYLERVIEW:
-                    SchoolInfoListAdapter adapter = new SchoolInfoListAdapter(getContext(),schoolInfoList,schoolRecyclerView);
+                    adapter = new SchoolInfoListAdapter(getContext(),schoolInfoList,schoolRecyclerView);
                     adapter.setOnItemClickListener(new SchoolInfoListAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
@@ -60,6 +61,11 @@ public class SchoolInfoFragmActivity extends Fragment {
                         }
                     });
                     schoolRecyclerView.setAdapter(adapter);
+                    break;
+                case REFRESH:
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getContext(),"刷新成功",Toast.LENGTH_SHORT).show();
+                    schoolSwipeRefreshLayout.setRefreshing(false);
                     break;
             }
         }
@@ -75,6 +81,12 @@ public class SchoolInfoFragmActivity extends Fragment {
         handler.sendEmptyMessage(GETJSOUPCONTENT);
         View view = inflater.inflate(R.layout.activity_school_info_fragm, container, false);
         schoolSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_school);
+        schoolSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                handler.sendEmptyMessage(GETJSOUPCONTENT);
+            }
+        });
         schoolRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_school);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         schoolRecyclerView.setLayoutManager(layoutManager);
@@ -92,6 +104,7 @@ public class SchoolInfoFragmActivity extends Fragment {
      * 使用jsoup获取学校官网数据
      */
     private void getJsoupContent(){
+        schoolInfoList = new ArrayList<>();
         String url = "http://www.jxut.edu.cn/";
         Connection conn = Jsoup.connect(url);
         // 修改http包中的header,伪装成浏览器进行抓取
@@ -127,12 +140,12 @@ public class SchoolInfoFragmActivity extends Fragment {
             Log.e("mytag", PageUrl );
             Log.e("mytag", ImgUrl );
         }
-        handler.sendEmptyMessage(INITRECYLERVIEW);
-    }
-    /**
-     * 加载下拉刷新组件
-     */
-    private void initSwipeRefreshLayout(){
+        if (ifFirstInitData){
+            ifFirstInitData=false;
+            handler.sendEmptyMessage(INITRECYLERVIEW);
+        }else{
+            handler.sendEmptyMessage(REFRESH);
+        }
 
     }
 

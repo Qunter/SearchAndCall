@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.qunter.searchcall.R;
 import com.qunter.searchcall.base.BaseActivity;
+import com.qunter.searchcall.engine.GlideImageLoader;
+import com.youth.banner.Banner;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -35,9 +37,10 @@ import java.util.List;
 public class SchoolDateilActivity extends BaseActivity {
     private String dateilUrl,detailContent;
     private List<String> dateilImgUrl = new ArrayList<String>();
-    private List<Bitmap> dateilBitmap = new ArrayList<Bitmap>();
     private Spanned contentsp;
     private TextView detailTitleTv,detailTimeTv,detailContentTv;
+    private Banner banner;
+    private String detailTitleString,detailTimeString;
     private final int GETDETAILDATA=0x00,PUTVIEWSDATA=0X01;
     private Handler handler = new Handler(){
         @Override
@@ -49,6 +52,9 @@ public class SchoolDateilActivity extends BaseActivity {
                     break;
                 case PUTVIEWSDATA:
                     putViewsData();
+                    initBanner();
+                    detailTitleTv.setText(detailTitleString);
+                    detailTimeTv.setText(detailTimeString);
                     break;
             }
         }
@@ -66,6 +72,7 @@ public class SchoolDateilActivity extends BaseActivity {
         detailTitleTv = (TextView) findViewById(R.id.detail_title);
         detailTimeTv = (TextView) findViewById(R.id.detail_time);
         detailContentTv = (TextView) findViewById(R.id.detail_content);
+        banner = (Banner) findViewById(R.id.detail_image);
     }
 
     Runnable deailDataRunnable = new Runnable() {
@@ -87,16 +94,22 @@ public class SchoolDateilActivity extends BaseActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        doc.select("img").remove();
+        detailTitleString = doc.select("[class=listpicabs_text_title]").text();
+        detailTimeString = doc.select("[class=listpicabs_text_info]").text();
+        detailTimeString  = detailTimeString.substring(6,16);
+        Elements detailImgUrlEles = doc.select("[class=listpicabs_text_show]").select("img");
         Element element = doc.select("span").first();
-        Elements detailImgUrlEles = element.select("img");
+        doc.select("img").remove();
         for(Element et:detailImgUrlEles){
             dateilImgUrl.add(et.absUrl("src"));
+            Log.e("detailimg", et.absUrl("src"));
         }
         Log.e("ttag", element.toString());
         detailContent = element.toString();
+        while(detailContent.indexOf("<br> <br>")!=-1){
+            detailContent = detailContent.replace("<br> <br>","<br>");
+        }
         detailContent = detailContent.replace("。<br>","。<br> <br>");
-        detailContent = detailContent.replace("<br> <br> <br> <br> <br>","<br> <br>");
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             contentsp = Html.fromHtml(detailContent,Html.FROM_HTML_MODE_LEGACY);
         } else {
@@ -106,5 +119,16 @@ public class SchoolDateilActivity extends BaseActivity {
     }
     private void putViewsData(){
         detailContentTv.setText(contentsp);
+    }
+    /**
+     * 初始化Banner轮播
+     */
+    private void initBanner(){
+        //设置图片加载器
+        banner.setImageLoader(new GlideImageLoader());
+        //设置图片集合
+        banner.setImages(dateilImgUrl);
+        //banner设置方法全部调用完毕时最后调用
+        banner.start();
     }
 }
