@@ -6,7 +6,7 @@ import cn.bmob.v3.BmobUser;
  * Created by Administrator on 2017/3/23.
  */
 
-public class UserIfmt extends BmobUser {
+public class UserInfo extends BmobUser {
     private String userNickname;
     private String userPhone;
 

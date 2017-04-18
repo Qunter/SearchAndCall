@@ -1,7 +1,6 @@
 package com.qunter.searchcall.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,7 +8,7 @@ import android.widget.Toast;
 
 import com.qunter.searchcall.R;
 import com.qunter.searchcall.base.BaseActivity;
-import com.qunter.searchcall.entity.UserIfmt;
+import com.qunter.searchcall.entity.UserInfo;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
@@ -55,12 +54,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
      * 在bmob数据库上验证账号并登录
      */
     private void login(){
-        UserIfmt userInformation = new UserIfmt();
+        UserInfo userInformation = new UserInfo();
         userInformation.setUsername(usernameEt.getText().toString());
         userInformation.setPassword(passwordEt.getText().toString());
-        userInformation.login(new SaveListener<UserIfmt>() {
+        userInformation.login(new SaveListener<UserInfo>() {
             @Override
-            public void done(UserIfmt userIfmt, BmobException e) {
+            public void done(UserInfo userInfo, BmobException e) {
                 if(e==null){
                     Toast.makeText(LoginActivity.this,"登录成功", Toast.LENGTH_SHORT).show();
                     startActivity(MainActivity.class);

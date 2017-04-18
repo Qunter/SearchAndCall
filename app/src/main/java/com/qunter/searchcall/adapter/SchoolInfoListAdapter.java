@@ -96,17 +96,13 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
     public int getItemCount() {
         return schoolInfoList.size();
     }
-
     class ImageTask extends AsyncTask<String, Void, Bitmap> {
-
         private String imageUrl;
-
         @Override
         protected Bitmap doInBackground(String... params) {
             Bitmap bitmap;
             if (params[0].equals("")){
                 bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.account_avatar);
-
                 return bitmap;
             }
             imageUrl = params[0];

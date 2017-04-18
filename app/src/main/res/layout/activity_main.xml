@@ -17,18 +17,26 @@
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/Theme.AppCompat.Light">
-
-
             <TextView
                 android:id="@+id/toolbarTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:text="@string/app_name"
                 android:textSize="22sp"
                 android:textColor="#dd000000" />
+            <ImageView
+                android:id="@+id/toolbarAddBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:src="@drawable/add_eventorfriend"/>
         </android.support.v7.widget.Toolbar>
+
+
+
 
 
     </android.support.design.widget.AppBarLayout>

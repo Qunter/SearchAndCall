@@ -35,6 +35,8 @@
         <activity android:name=".activity.MainActivity"/>
         //学校资讯详情页面
         <activity android:name=".activity.SchoolDateilActivity"/>
+        //活动创建页面
+        <activity android:name=".activity.EventCreateActivity"/>
     </application>
 
 </manifest>

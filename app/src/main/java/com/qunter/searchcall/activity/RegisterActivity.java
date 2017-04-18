@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.qunter.searchcall.R;
 import com.qunter.searchcall.base.BaseActivity;
-import com.qunter.searchcall.entity.UserIfmt;
+import com.qunter.searchcall.entity.UserInfo;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
@@ -22,7 +22,7 @@ import cn.bmob.v3.listener.SaveListener;
 public class RegisterActivity extends BaseActivity implements View.OnClickListener{
     private EditText usernameEt,passwordEt,userPhoneEt,userNicknameEt;
     private Button registerBtn,loginBtn;
-    private UserIfmt userInformation;
+    private UserInfo userInformation;
     @Override
     protected void initVariablesAndService() {
         Bmob.initialize(this,"8da888d03200ff2f6b403d064b805d60");
@@ -57,19 +57,19 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
      * 注册账号至bmob
      */
     private void register(){
-        userInformation = new UserIfmt();
+        userInformation = new UserInfo();
         userInformation.setUsername(usernameEt.getText().toString().trim());
         userInformation.setPassword(passwordEt.getText().toString().trim());
         userInformation.setUserPhone(userPhoneEt.getText().toString().trim());
         userInformation.setUserNickname(userNicknameEt.getText().toString().trim());
-        userInformation.signUp(new SaveListener<UserIfmt>() {
+        userInformation.signUp(new SaveListener<UserInfo>() {
             @Override
-            public void done(UserIfmt s, BmobException e) {
+            public void done(UserInfo s, BmobException e) {
                 if(e==null){
                     Toast.makeText(RegisterActivity.this,"注册成功", Toast.LENGTH_SHORT).show();
-                    userInformation.login(new SaveListener<UserIfmt>() {
+                    userInformation.login(new SaveListener<UserInfo>() {
                         @Override
-                        public void done(UserIfmt userIfmt, BmobException e) {
+                        public void done(UserInfo userInfo, BmobException e) {
                             if(e==null){
                                 Toast.makeText(RegisterActivity.this,"登录成功", Toast.LENGTH_SHORT).show();
                                 startActivity(MainActivity.class);

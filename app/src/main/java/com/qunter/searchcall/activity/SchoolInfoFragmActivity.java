@@ -78,7 +78,6 @@ public class SchoolInfoFragmActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        handler.sendEmptyMessage(GETJSOUPCONTENT);
         View view = inflater.inflate(R.layout.activity_school_info_fragm, container, false);
         schoolSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_school);
         schoolSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -90,6 +89,7 @@ public class SchoolInfoFragmActivity extends Fragment {
         schoolRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_school);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         schoolRecyclerView.setLayoutManager(layoutManager);
+        handler.sendEmptyMessage(GETJSOUPCONTENT);
         return view;
 
     }
