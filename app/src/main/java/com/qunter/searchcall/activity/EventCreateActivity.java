@@ -1,6 +1,7 @@
 package com.qunter.searchcall.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,7 +62,10 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
                 if (eventSubmitTitle.equals("") || eventSubmitContent.equals("")||eventGetEventStartTimeBtn.getText().toString().equals("获取活动开始时间")||eventGetEventEndTimeBtn.getText().toString().equals("获取活动结束时间")) {
                     Toast.makeText(getApplicationContext(), "标题、内容为空或活动时间未获取  请检查后再次提交", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
+                }else if(eventStartDate.compareTo(eventEndDate)>=0){
+                    Toast.makeText(getApplicationContext(), "活动结束时间不能早于或等于结束时间  请检查后再次提交", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
                     BmobDate SubmitStartDate = new BmobDate(eventStartDate);
                     BmobDate SubmitEndDate = new BmobDate(eventEndDate);
                     EventInfo eventInfo = new EventInfo();
@@ -85,9 +89,9 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
             }
             case R.id.event_getEventStartTimeBtn:{
                 try {
-                    SimpleDateFormat mSDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String DateString = timePickerShow.getTxtTime("-", "-", " ", ":", ":", "");
-                    eventStartDate = mSDF.parse(DateString);
+                    eventStartDate = sdf.parse(DateString);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -96,9 +100,9 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
             }
             case R.id.event_getEventEndTimeBtn:{
                 try {
-                    SimpleDateFormat mSDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String DateString = timePickerShow.getTxtTime("-", "-", " ", ":", ":", "");
-                    eventEndDate = mSDF.parse(DateString);
+                    eventEndDate = sdf.parse(DateString);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

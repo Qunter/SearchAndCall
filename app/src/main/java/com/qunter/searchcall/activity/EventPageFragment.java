@@ -1,5 +1,6 @@
 package com.qunter.searchcall.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.qunter.searchcall.R;
 import com.qunter.searchcall.adapter.EventInfoListAdapter;
+import com.qunter.searchcall.adapter.SchoolInfoListAdapter;
 import com.qunter.searchcall.entity.EventInfo;
 
 import java.util.List;
@@ -79,6 +81,9 @@ public class EventPageFragment extends Fragment {
         handler.sendEmptyMessage(GETAROUNDEVENTDATA);
         return view;
     }
+    /**
+     * 查询周边活动
+     */
     private void getAroundEventData(){
         BmobQuery<EventInfo> aroundEventQuery = new BmobQuery<EventInfo>();
         //执行查询方法
@@ -93,6 +98,9 @@ public class EventPageFragment extends Fragment {
             }
         });
     }
+    /**
+     * 查询我的活动
+     */
     private void getMineEventData(){
         BmobQuery<EventInfo> aroundEventQuery = new BmobQuery<EventInfo>();
         //执行查询方法
@@ -107,12 +115,34 @@ public class EventPageFragment extends Fragment {
             }
         });
     }
+    /**
+     * 加载周边活动数据至RecycleView
+     */
     private void loadAroundEventRecycleView(){
         adapter = new EventInfoListAdapter(getContext(),aroundEventData,eventRecyclerView);
+        adapter.setOnItemClickListener(new EventInfoListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(),EventDateilActivity.class);
+                intent.putExtra("eventInfo",aroundEventData.get(position));
+                startActivity(intent);
+            }
+        });
         eventRecyclerView.setAdapter(adapter);
     }
+    /**
+     * 加载我的活动数据至RecycleView
+     */
     private void loadMineEventRecycleView(){
         adapter = new EventInfoListAdapter(getContext(),mineEventData,eventRecyclerView);
+        adapter.setOnItemClickListener(new EventInfoListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getContext(),EventDateilActivity.class);
+                intent.putExtra("eventInfo",mineEventData.get(position));
+                startActivity(intent);
+            }
+        });
         eventRecyclerView.setAdapter(adapter);
     }
 }

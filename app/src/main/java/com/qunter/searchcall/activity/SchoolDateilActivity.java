@@ -1,15 +1,11 @@
 package com.qunter.searchcall.activity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qunter.searchcall.R;
@@ -24,9 +20,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +61,7 @@ public class SchoolDateilActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_dateil);
+        setContentView(R.layout.activity_school_dateil);
         detailTitleTv = (TextView) findViewById(R.id.detail_title);
         detailTimeTv = (TextView) findViewById(R.id.detail_time);
         detailContentTv = (TextView) findViewById(R.id.detail_content);
