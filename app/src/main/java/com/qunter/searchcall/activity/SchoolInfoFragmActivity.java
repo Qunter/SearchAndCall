@@ -55,12 +55,17 @@ public class SchoolInfoFragmActivity extends Fragment {
                         @Override
                         public void onItemClick(View view, int position) {
                             //Log.e("onitemclickTag", schoolInfoList.get(position).getTitle());
-                            Intent intent = new Intent(getContext(),SchoolDateilActivity.class);
-                            intent.putExtra("dateilUrl",schoolInfoList.get(position).getPageUrl());
+                            Intent intent = new Intent(getContext(),SchoolDetailActivity.class);
+                            intent.putExtra("detailUrl",schoolInfoList.get(position).getPageUrl());
                             startActivity(intent);
                         }
                     });
                     schoolRecyclerView.setAdapter(adapter);
+                    if (ifFirstInitData){
+                        ifFirstInitData=false;
+                    }else{
+                        handler.sendEmptyMessage(REFRESH);
+                    }
                     break;
                 case REFRESH:
                     adapter.notifyDataSetChanged();
@@ -140,12 +145,7 @@ public class SchoolInfoFragmActivity extends Fragment {
             Log.e("mytag", PageUrl );
             Log.e("mytag", ImgUrl );
         }
-        if (ifFirstInitData){
-            ifFirstInitData=false;
-            handler.sendEmptyMessage(INITRECYLERVIEW);
-        }else{
-            handler.sendEmptyMessage(REFRESH);
-        }
+        handler.sendEmptyMessage(INITRECYLERVIEW);
 
     }
 

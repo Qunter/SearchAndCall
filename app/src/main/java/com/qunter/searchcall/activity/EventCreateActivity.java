@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import cn.bmob.v3.listener.SaveListener;
 public class EventCreateActivity extends BaseActivity implements View.OnClickListener{
     private EditText eventTitleEt,eventContentEt;
     private TimePickerShow timePickerShow;
+    private ImageView eventCreateBackBtn;
     private LinearLayout timeChooseView;
     private Button eventGetEventStartTimeBtn,eventGetEventEndTimeBtn,eventSubmitBtn;
     private Date eventStartDate = null,eventEndDate = null;
@@ -50,6 +52,8 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
         eventGetEventEndTimeBtn.setOnClickListener(this);
         eventSubmitBtn = (Button) findViewById(R.id.event_submitBtn);
         eventSubmitBtn.setOnClickListener(this);
+        eventCreateBackBtn = (ImageView) findViewById(R.id.event_create_backBtn);
+        eventCreateBackBtn.setOnClickListener(this);
 
     }
 
@@ -78,6 +82,7 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
                         public void done(String s, BmobException e) {
                             if (e==null){
                                 Toast.makeText(getApplicationContext(), "活动发布成功", Toast.LENGTH_LONG).show();
+                                finish();
                             }else{
                                 Toast.makeText(getApplicationContext(), "活动发布失败", Toast.LENGTH_LONG).show();
                             }
@@ -107,6 +112,10 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
                     e.printStackTrace();
                 }
                 eventGetEventEndTimeBtn.setText(timePickerShow.getTxtTime("-", "-", " ", ":", ":", ""));
+                break;
+            }
+            case R.id.event_detail_backBtn:{
+                finish();
                 break;
             }
         }

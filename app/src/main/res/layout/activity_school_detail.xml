@@ -90,7 +90,8 @@
                 android:isScrollContainer="false"
                 android:overScrollMode="never"
                 android:scrollbars="vertical"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:padding="20dp"/>
 
 
         </android.support.v4.widget.NestedScrollView>

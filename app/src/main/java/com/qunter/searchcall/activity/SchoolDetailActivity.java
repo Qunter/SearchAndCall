@@ -27,9 +27,9 @@ import java.util.List;
  * Created by Administrator on 2017/4/13.
  */
 
-public class SchoolDateilActivity extends BaseActivity {
-    private String dateilUrl,detailContent;
-    private List<String> dateilImgUrl = new ArrayList<String>();
+public class SchoolDetailActivity extends BaseActivity {
+    private String detailUrl,detailContent;
+    private List<String> detailImgUrl = new ArrayList<String>();
     private Spanned contentsp;
     private TextView detailTitleTv,detailTimeTv,detailContentTv;
     private Banner banner;
@@ -55,13 +55,14 @@ public class SchoolDateilActivity extends BaseActivity {
     @Override
     protected void initVariablesAndService() {
         //获取详情页链接
-        dateilUrl = getIntent().getExtras().get("dateilUrl").toString();
+        detailUrl = getIntent().getExtras().get("detailUrl").toString();
         handler.sendEmptyMessage(GETDETAILDATA);
+        super.setIfImmersive(true);
     }
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_school_dateil);
+        setContentView(R.layout.activity_school_detail);
         detailTitleTv = (TextView) findViewById(R.id.detail_title);
         detailTimeTv = (TextView) findViewById(R.id.detail_time);
         detailContentTv = (TextView) findViewById(R.id.detail_content);
@@ -78,7 +79,7 @@ public class SchoolDateilActivity extends BaseActivity {
      * 获取详情页所需数据
      */
     private void getDetailData(){
-        Connection conn = Jsoup.connect(dateilUrl);
+        Connection conn = Jsoup.connect(detailUrl);
         // 修改http包中的header,伪装成浏览器进行抓取
         conn.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:32.0) Gecko/    20100101 Firefox/32.0");
         Document doc = null;
@@ -94,7 +95,7 @@ public class SchoolDateilActivity extends BaseActivity {
         Element element = doc.select("span").first();
         doc.select("img").remove();
         for(Element et:detailImgUrlEles){
-            dateilImgUrl.add(et.absUrl("src"));
+            detailImgUrl.add(et.absUrl("src"));
             Log.e("detailimg", et.absUrl("src"));
         }
         Log.e("ttag", element.toString());
@@ -120,7 +121,7 @@ public class SchoolDateilActivity extends BaseActivity {
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
         //设置图片集合
-        banner.setImages(dateilImgUrl);
+        banner.setImages(detailImgUrl);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
     }

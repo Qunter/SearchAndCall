@@ -23,7 +23,7 @@ public class EventPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return EventPageFragment.newInstance(position + 1);
+        return EventPageFragment.newInstance(position);
     }
 
     @Override

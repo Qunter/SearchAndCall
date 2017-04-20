@@ -34,11 +34,11 @@
         //首页
         <activity android:name=".activity.MainActivity"/>
         //学校资讯详情页面
-        <activity android:name=".activity.SchoolDateilActivity"/>
+        <activity android:name=".activity.SchoolDetailActivity"/>
         //活动创建页面
         <activity android:name=".activity.EventCreateActivity"/>
         //活动详情页面
-        <activity android:name=".activity.EventDateilActivity"/>
+        <activity android:name=".activity.EventDetailActivity"/>
     </application>
 
 </manifest>
