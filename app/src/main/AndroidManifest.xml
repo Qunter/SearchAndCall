@@ -39,6 +39,32 @@
         <activity android:name=".activity.EventCreateActivity"/>
         //活动详情页面
         <activity android:name=".activity.EventDetailActivity"/>
-    </application>
+        //添加好友界面
+        <activity android:name=".activity.FriendAddActivity"/>
+        <!--会话界面-->
+        <activity
+            android:name=".activity.ConversationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="com.qunter.searchcall"
+                    android:pathPrefix="/conversation/"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+    </application>
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="com.qunter.searchcall.FileProvider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/rc_file_path" />
+    </provider>
 </manifest>

@@ -6,16 +6,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.qunter.searchcall.R;
+import com.qunter.searchcall.entity.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobUser;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 
 /**
  * Created by Administrator on 2017/3/23.
@@ -28,10 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView titleTv;
     private ImageView toolbarAddBtn;
     private String TitleString[] = {"学校资讯","周边活动","我的好友","我的设置"};
-
+    private String userID="";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RongIM.init(this);
+        initUserToken();
         setContentView(R.layout.activity_main);
         initViews();
     }
@@ -115,8 +124,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this,EventCreateActivity.class);
                 startActivity(intent);
             }else{
-
+                Intent intent = new Intent(this,FriendAddActivity.class);
+                startActivity(intent);
             }
         }
+    }
+    /**
+     * 获取融云所需userID及token
+     */
+    private void initUserToken(){
+        UserInfo loginUser = BmobUser.getCurrentUser(UserInfo.class);
+        userID = loginUser.getUserPhone();
+        connectRongServer(loginUser.getRongToken());
+    }
+
+    /**
+     * 初始化登录用户的融云服务
+     */
+    private void connectRongServer(String token) {
+
+        RongIM.connect(token, new RongIMClient.ConnectCallback() {
+            @Override
+            public void onSuccess(String userId) {
+                if (userId.equals(userID)){
+                    Toast.makeText(getApplicationContext(), userID+"成功连接", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), userID+"连接失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+                // Log.e("onError", "onError userid:" + errorCode.getValue());//获取错误的错误码
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                Log.e("MainActivity", "connect failure errorCode is : " + errorCode.getValue());
+            }
+
+
+            @Override
+            public void onTokenIncorrect() {
+                Toast.makeText(getApplicationContext(), "TokenError", Toast.LENGTH_SHORT).show();
+                Log.e("MainActivity", "token is error ,please check token and appkey");
+            }
+        });
+
     }
 }

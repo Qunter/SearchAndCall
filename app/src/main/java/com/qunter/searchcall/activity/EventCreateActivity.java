@@ -114,7 +114,7 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
                 eventGetEventEndTimeBtn.setText(timePickerShow.getTxtTime("-", "-", " ", ":", ":", ""));
                 break;
             }
-            case R.id.event_detail_backBtn:{
+            case R.id.event_create_backBtn:{
                 finish();
                 break;
             }
