@@ -11,6 +11,7 @@ import com.qunter.searchcall.base.BaseActivity;
 import com.qunter.searchcall.entity.UserInfo;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -31,6 +32,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
+        BmobUser bmobUser = BmobUser.getCurrentUser();
+        if(bmobUser != null){
+            startActivity(MainActivity.class);
+            this.finish();
+        }
         usernameEt = (EditText) findViewById(R.id.login_usernameEt);
         passwordEt = (EditText) findViewById(R.id.login_passwordEt);
         loginBtn = (Button) findViewById(R.id.login_loginBtn);
@@ -62,7 +68,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             @Override
             public void done(UserInfo userInfo, BmobException e) {
                 if(e==null){
-                    Toast.makeText(LoginActivity.this,"登录成功", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this,"登录成功", Toast.LENGTH_SHORT).show();
                     startActivity(MainActivity.class);
                     LoginActivity.this.finish();
                 }else{

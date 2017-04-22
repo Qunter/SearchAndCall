@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initBottomNav() {
         bottomNavigationView = (AHBottomNavigation) findViewById(R.id.bottom_navigation_view);
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(TitleString[0],
-                R.drawable.ic_tab_temporary);
+                R.drawable.ic_school_black_24dp);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(TitleString[1],
-                R.drawable.ic_tab_temporary);
+                R.drawable.ic_event_black_24dp);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(TitleString[2],
-                R.drawable.ic_tab_temporary);
+                R.drawable.ic_friend_24dp);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(TitleString[3],
-                R.drawable.ic_tab_temporary);
+                R.drawable.ic_user_black_24dp);
 
         bottomNavigationView.addItem(item1);
         bottomNavigationView.addItem(item2);
@@ -147,9 +147,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onSuccess(String userId) {
                 if (userId.equals(userID)){
-                    Toast.makeText(getApplicationContext(), userID+"成功连接", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), userID+"成功连接", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(getApplicationContext(), userID+"连接失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), userID+"融云连接失败", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -127,8 +127,6 @@ public class FriendPageFragment extends Fragment implements RongIM.UserInfoProvi
             public void done(List<UserInfo> object,BmobException e) {
                 if(e==null){
                     loginUserFriendInfoList=object;
-                    Log.e("taggg", loginUserFriendInfoList.size()+"" );
-                    Log.e("taggg", loginUserFriendInfoList.get(0).getUserNickname()+"" );
                     //Toast.makeText(getContext(), "成功加载好友列表数据"+userFriendInformationList.size(), Toast.LENGTH_SHORT).show();
                     handler.sendEmptyMessage(FRIENDINFORMATIONLISTDOWNOVER);
                 }else{

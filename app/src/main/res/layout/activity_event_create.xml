@@ -33,12 +33,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+        android:orientation="vertical">
 
             <EditText
                 android:id="@+id/event_titleEt"
@@ -52,27 +47,26 @@
                 android:id="@+id/event_contentEt"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
                 android:layout_gravity="center_horizontal"
                 android:hint="请输入活动内容"
                 android:inputType="textMultiLine"
-                android:minLines="4"
-                android:maxLines="4"/>
+                android:minLines="3"
+                android:maxLines="3"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="请滑动选择时间"
                 android:textSize="20dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="160dp"/>
+                android:layout_marginTop="5dp"/>
             <LinearLayout
                 android:id="@+id/timeChooseView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="190dp"
                 android:background="@drawable/timechoose_bg"
                 android:orientation="vertical"
-                android:padding="10dp" >
+                android:padding="10dp"
+                android:layout_marginTop="10dp">
             </LinearLayout>
 
             <Button
@@ -80,24 +74,29 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="320dp"
-                android:text="获取活动开始时间" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ripple_button"
+                android:text="获取活动开始时间"
+                android:textColor="#ffffff"/>
             <Button
                 android:id="@+id/event_getEventEndTimeBtn"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="370dp"
-                android:text="获取活动结束时间" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ripple_button"
+                android:text="获取活动结束时间"
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/event_submitBtn"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="420dp"
-                android:text="提交" />
-        </FrameLayout>
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ripple_button"
+                android:text="提交"
+                android:textColor="#ffffff"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -29,6 +29,7 @@ import cn.bmob.v3.datatype.BmobRelation;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by Administrator on 2017/4/21.
@@ -137,10 +138,11 @@ public class FriendAddActivity extends BaseActivity implements View.OnClickListe
     private LinearLayout addFriendAddAskView(String searchUserAvatarUrl, String searchUserNickname) {
         friendAddAskView = new LinearLayout(this);
         friendAddAskView.setOrientation(LinearLayout.HORIZONTAL);
+        friendAddAskView.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout.LayoutParams llparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         friendAddAskView.setLayoutParams(llparams);
         ImageView touxiang = new ImageView(this);
-        Glide.with(getApplicationContext()).load(searchUserAvatarUrl).into(touxiang);
+        Glide.with(getApplicationContext()).load(searchUserAvatarUrl).bitmapTransform(new CropCircleTransformation(getApplicationContext())).into(touxiang);
         LinearLayout.LayoutParams txparams = new LinearLayout.LayoutParams(100, 100);
         txparams.setMargins(30, 15, 15, 15);
         touxiang.setLayoutParams(txparams);
@@ -156,6 +158,7 @@ public class FriendAddActivity extends BaseActivity implements View.OnClickListe
         //add.setBackgroundResource(R.drawable.background_button);
         add.setTextColor(Color.WHITE);
         add.setGravity(Gravity.CENTER);
+        add.setBackground(getResources().getDrawable(R.drawable.ripple_button,null));
         add.setText("添加好友");
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +171,7 @@ public class FriendAddActivity extends BaseActivity implements View.OnClickListe
         //noAdd.setBackgroundResource(R.drawable.background_button);
         noAdd.setTextColor(Color.WHITE);
         noAdd.setGravity(Gravity.CENTER);
+        noAdd.setBackground(getResources().getDrawable(R.drawable.ripple_button,null));
         noAdd.setText("取消");
         noAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,6 +258,10 @@ public class FriendAddActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.friend_addBtn:
+                if(BmobUser.getCurrentUser(UserInfo.class).getUserNickname().equals(friendAddEt.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "不能添加自己为好友", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 handler.sendEmptyMessage(SEARCHUSERINFO);
                 break;
             case R.id.friend_add_backBtn:

@@ -94,6 +94,7 @@ public class SchoolInfoFragmActivity extends Fragment {
         schoolRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_school);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         schoolRecyclerView.setLayoutManager(layoutManager);
+        schoolRecyclerView.setAdapter(adapter);
         handler.sendEmptyMessage(GETJSOUPCONTENT);
         return view;
 

@@ -12,6 +12,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     sourceSets {
@@ -25,6 +26,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
@@ -67,5 +72,8 @@ dependencies {
 
     //glide上图片修饰依赖
     compile 'jp.wasabeef:glide-transformations:2.0.2'
+
+    //由于依赖太多  导入分包依赖以处理该问题  否则无法build
+    compile 'com.android.support:multidex:1.0.1'
 
 }

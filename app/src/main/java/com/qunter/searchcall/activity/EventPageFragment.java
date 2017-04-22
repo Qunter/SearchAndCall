@@ -101,6 +101,7 @@ public class EventPageFragment extends Fragment {
         eventRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_event);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         eventRecyclerView.setLayoutManager(layoutManager);
+        eventRecyclerView.setAdapter(adapter);
         initData();
         return view;
     }

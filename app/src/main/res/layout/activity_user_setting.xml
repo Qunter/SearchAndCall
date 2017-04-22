@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +14,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/Theme.AppCompat.Light">
             <ImageView
-                android:id="@+id/friend_add_backBtn"
+                android:id="@+id/user_setting_backBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -24,32 +23,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="添加好友"
+                android:text="相关设置"
                 android:textSize="22sp"
                 android:textColor="#dd000000" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-    <LinearLayout
-        android:id="@+id/friend_add_linearlayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/friend_addEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:hint="请输入搜索用户的昵称"
-            android:layout_marginTop="20dp"
-            android:inputType="text" />
-        <Button
-            android:id="@+id/friend_addBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ripple_button"
-            android:textColor="#ffffff"
-            android:text="搜索"
-            android:layout_margin="20dp"/>
-    </LinearLayout>
-
-</LinearLayout>
+        android:layout_gravity="center"
+        android:text="相关设置"
+        android:textSize="24sp" />
+</FrameLayout>
