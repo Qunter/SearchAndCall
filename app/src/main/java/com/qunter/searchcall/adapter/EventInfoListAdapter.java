@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/18.
+ * 活动列表adapter
  */
 
 public class EventInfoListAdapter extends RecyclerView.Adapter<EventInfoListAdapter.ViewHolder>{

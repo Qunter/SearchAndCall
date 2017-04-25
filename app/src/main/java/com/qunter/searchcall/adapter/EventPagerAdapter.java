@@ -9,6 +9,7 @@ import com.qunter.searchcall.activity.EventPageFragment;
 
 /**
  * Created by Administrator on 2017/4/17.
+ * 活动页面adapter
  */
 
 public class EventPagerAdapter extends FragmentPagerAdapter {

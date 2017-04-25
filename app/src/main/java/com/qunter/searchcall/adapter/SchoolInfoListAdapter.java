@@ -25,6 +25,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/25.
+ * 学校资讯列表adapter
  */
 
 public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAdapter.ViewHolder>  {

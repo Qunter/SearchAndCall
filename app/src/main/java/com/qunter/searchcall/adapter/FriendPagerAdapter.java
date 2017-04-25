@@ -13,6 +13,7 @@ import io.rong.imlib.model.Conversation;
 
 /**
  * Created by Administrator on 2017/4/20.
+ * 好友界面adapter
  */
 
 public class FriendPagerAdapter extends FragmentPagerAdapter {

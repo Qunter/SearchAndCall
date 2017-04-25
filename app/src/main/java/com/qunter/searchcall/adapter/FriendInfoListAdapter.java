@@ -20,6 +20,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by Administrator on 2017/4/21.
+ * 好友列表adapter
  */
 
 public class FriendInfoListAdapter extends RecyclerView.Adapter<FriendInfoListAdapter.ViewHolder>{
