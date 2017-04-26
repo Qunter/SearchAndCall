@@ -4,6 +4,7 @@ import cn.bmob.v3.BmobUser;
 
 /**
  * Created by Administrator on 2017/3/23.
+ * 用户表实体
  */
 
 public class UserInfo extends BmobUser {

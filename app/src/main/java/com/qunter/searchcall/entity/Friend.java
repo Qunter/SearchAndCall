@@ -1,5 +1,7 @@
 package com.qunter.searchcall.entity;
-
+/**
+ * 融云所需好友实体
+ */
 public class Friend {
 
     private String userId;

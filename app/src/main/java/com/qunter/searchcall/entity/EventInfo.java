@@ -5,6 +5,7 @@ import cn.bmob.v3.datatype.BmobDate;
 
 /**
  * Created by Administrator on 2017/4/17.
+ * 活动信息实体
  */
 
 public class EventInfo extends BmobObject{

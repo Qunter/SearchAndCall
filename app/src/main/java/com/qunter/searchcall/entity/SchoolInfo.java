@@ -2,6 +2,7 @@ package com.qunter.searchcall.entity;
 
 /**
  * Created by Administrator on 2017/3/25.
+ * 学校资讯实体
  */
 
 public class SchoolInfo {

@@ -5,6 +5,7 @@ import cn.bmob.v3.datatype.BmobRelation;
 
 /**
  * Created by Administrator on 2017/2/23.
+ * 用户好友表实体
  */
 
 public class UserFriend extends BmobObject {
