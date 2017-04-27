@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.qunter.searchcall.R;
 import com.qunter.searchcall.entity.SchoolInfo;
 
@@ -22,6 +23,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
+
 
 /**
  * Created by Administrator on 2017/3/25.
@@ -30,7 +33,7 @@ import java.util.List;
 
 public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAdapter.ViewHolder>  {
     private List<SchoolInfo> schoolInfoList;
-    private LruCache<String, Bitmap> mImageCache;
+    //private LruCache<String, Bitmap> mImageCache;
     private Context context;
     private RecyclerView recyclerView;
     private OnItemClickListener onItemClickListener;
@@ -50,6 +53,7 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
         this.context = context;
         this.schoolInfoList = list;
         this.recyclerView = recyclerView;
+        /*
         int maxCache = (int) Runtime.getRuntime().maxMemory();
         int cacheSize = maxCache / 8;
         mImageCache = new LruCache<String, Bitmap>(cacheSize) {
@@ -58,6 +62,7 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
                 return value.getByteCount();
             }
         };
+        */
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -71,9 +76,8 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
         holder.setIsRecyclable(false);
         SchoolInfo schoolInfo = schoolInfoList.get(position);
         holder.schoolInfoTitle.setText(schoolInfo.getTitle());
-        holder.schoolInfoImg.setTag(schoolInfo.getImgUrl());
-        //Log.e("schoolimgurl", schoolInfo.getImgUrl());
-        //Log.e("tag", position+"");
+        Glide.with(context).load(schoolInfo.getImgUrl()).into(holder.schoolInfoImg);
+        //holder.schoolInfoImg.setTag(schoolInfo.getImgUrl());
         //判断是否设置了监听器
         if(onItemClickListener != null){
             //为ItemView设置监听器
@@ -85,18 +89,26 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
                 }
             });
         }
+        /*
         if (mImageCache.get(schoolInfo.getImgUrl()) != null) {
             holder.schoolInfoImg.setImageBitmap(mImageCache.get(schoolInfo.getImgUrl()));
         } else {
             ImageTask it = new ImageTask();
             it.execute(schoolInfo.getImgUrl());
         }
+        */
     }
 
     @Override
     public int getItemCount() {
         return schoolInfoList.size();
     }
+
+    /**
+     * 异步加载获取图片原始方法
+     * 已废弃
+     */
+    /*
     class ImageTask extends AsyncTask<String, Void, Bitmap> {
         private String imageUrl;
         @Override
@@ -127,9 +139,12 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
                 //Log.e("tag", "setbitmap");
             }
         }
+        */
         /**
          * 根据url从网络上下载图片
+         * 已废弃
          */
+        /*
         private Bitmap downloadImage() {
             HttpURLConnection con = null;
             Bitmap bitmap = null;
@@ -151,6 +166,7 @@ public class SchoolInfoListAdapter extends RecyclerView.Adapter<SchoolInfoListAd
             return bitmap;
         }
     }
+    */
     /**
      * 点击事件接口
      */
