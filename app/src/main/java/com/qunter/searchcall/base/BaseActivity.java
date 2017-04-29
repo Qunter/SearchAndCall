@@ -12,6 +12,7 @@ import android.view.WindowManager;
 
 /**
  * Created by Administrator on 2017/3/21.
+ * Activity基类
  */
 
 public abstract class BaseActivity extends Activity{
