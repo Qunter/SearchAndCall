@@ -158,6 +158,7 @@ public class EventPageFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getContext(),EventDetailActivity.class);
+                //通过intent传递活动信息
                 intent.putExtra("eventInfo",aroundEventData.get(position));
                 startActivity(intent);
             }
@@ -173,6 +174,7 @@ public class EventPageFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getContext(),EventDetailActivity.class);
+                //通过intent传递活动信息
                 intent.putExtra("eventInfo",mineEventData.get(position));
                 startActivity(intent);
             }

@@ -19,6 +19,7 @@ public class EventDetailActivity extends BaseActivity {
     private ImageView eventDetailBackBtn;
     @Override
     protected void initVariablesAndService() {
+        //从intent获取活动信息
         eventInfo = (EventInfo) getIntent().getExtras().get("eventInfo");
     }
     @Override
