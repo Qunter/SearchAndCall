@@ -28,11 +28,26 @@
                 android:textColor="#dd000000" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-    <Button
-        android:id="@+id/user_maneger_exit"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="退出登录"
-        android:background="@drawable/ripple_button"/>
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/user_maneger_infoChange"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="修改账号信息"
+            android:layout_margin="5dp"
+            android:background="@drawable/ripple_button"/>
+        <Button
+            android:id="@+id/user_maneger_exit"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:layout_margin="5dp"
+            android:background="@drawable/ripple_button"/>
+    </LinearLayout>
+
 </FrameLayout>
