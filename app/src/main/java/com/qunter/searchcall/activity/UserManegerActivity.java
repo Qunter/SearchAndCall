@@ -65,6 +65,7 @@ public class UserManegerActivity extends BaseActivity implements View.OnClickLis
                 handler.sendEmptyMessageDelayed(EXITAPP,1500);
                 break;
             case R.id.user_maneger_infoChange:
+                startActivity(UserInfoChangeActivity.class);
                 break;
         }
 

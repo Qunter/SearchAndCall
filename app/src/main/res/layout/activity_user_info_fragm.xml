@@ -28,5 +28,5 @@
     </RelativeLayout>
     <include
         android:id="@+id/user_info_bottom"
-        layout="@layout/activity_user_info__fragm_bottom"/>
+        layout="@layout/activity_user_info_fragm_bottom"/>
 </LinearLayout>
