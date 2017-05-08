@@ -37,8 +37,8 @@ public class UserInfoFragmActivity extends Fragment implements View.OnClickListe
         shareBtn = (TextView) view.findViewById(R.id.user_info_shareBtn);
         sentBtn = (TextView) view.findViewById(R.id.user_info_sentBtn);
         aboutBtn = (TextView) view.findViewById(R.id.user_info_aboutBtn);
-        userNickname = (TextView) view.findViewById(R.id.user_info_nickname);
-        userAvatar = (ImageView) view.findViewById(R.id.user_info_avatar);
+        userNickname = (TextView) view.findViewById(R.id.user_info_nicknameTv);
+        userAvatar = (ImageView) view.findViewById(R.id.user_info_avatarIv);
 
         usermanegerBtn.setOnClickListener(this);
         settingsBtn.setOnClickListener(this);

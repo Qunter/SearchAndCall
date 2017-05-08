@@ -35,7 +35,7 @@
 
                     <com.youth.banner.Banner
                         xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/detail_image"
+                        android:id="@+id/school_detail_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop" />
@@ -47,7 +47,7 @@
                         android:background="@drawable/black_bg" />
 
                     <TextView
-                        android:id="@+id/detail_title"
+                        android:id="@+id/school_detail_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
@@ -57,7 +57,7 @@
                         android:textSize="22sp" />
 
                     <TextView
-                        android:id="@+id/detail_time"
+                        android:id="@+id/school_detail_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|bottom"
@@ -84,7 +84,7 @@
 
 
             <TextView
-                android:id="@+id/detail_content"
+                android:id="@+id/school_detail_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:isScrollContainer="false"

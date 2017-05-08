@@ -13,12 +13,12 @@
             android:gravity="center_horizontal"
             android:layout_centerInParent="true">
             <ImageView
-                android:id="@+id/user_info_avatar"
+                android:id="@+id/user_info_avatarIv"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="#000000"/>
             <TextView
-                android:id="@+id/user_info_nickname"
+                android:id="@+id/user_info_nicknameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NickName"

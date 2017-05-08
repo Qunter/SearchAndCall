@@ -63,10 +63,10 @@ public class SchoolDetailActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_school_detail);
-        detailTitleTv = (TextView) findViewById(R.id.detail_title);
-        detailTimeTv = (TextView) findViewById(R.id.detail_time);
-        detailContentTv = (TextView) findViewById(R.id.detail_content);
-        banner = (Banner) findViewById(R.id.detail_image);
+        detailTitleTv = (TextView) findViewById(R.id.school_detail_title);
+        detailTimeTv = (TextView) findViewById(R.id.school_detail_time);
+        detailContentTv = (TextView) findViewById(R.id.school_detail_content);
+        banner = (Banner) findViewById(R.id.school_detail_image);
     }
 
     Runnable deailDataRunnable = new Runnable() {

@@ -36,7 +36,7 @@
         android:orientation="vertical">
 
             <EditText
-                android:id="@+id/event_titleEt"
+                android:id="@+id/event_creat_titleEt"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -44,7 +44,7 @@
                 android:hint="请输入活动标题"
                 android:inputType="text" />
             <EditText
-                android:id="@+id/event_contentEt"
+                android:id="@+id/event_creat_contentEt"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -60,7 +60,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"/>
             <LinearLayout
-                android:id="@+id/timeChooseView"
+                android:id="@+id/event_creat_timeChooseView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/timechoose_bg"
@@ -70,7 +70,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/event_getEventStartTimeBtn"
+                android:id="@+id/event_creat_getEventStartTimeBtn"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -79,7 +79,7 @@
                 android:text="获取活动开始时间"
                 android:textColor="#ffffff"/>
             <Button
-                android:id="@+id/event_getEventEndTimeBtn"
+                android:id="@+id/event_creat_getEventEndTimeBtn"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -89,7 +89,7 @@
                 android:textColor="#ffffff"/>
 
             <Button
-                android:id="@+id/event_submitBtn"
+                android:id="@+id/event_creat_submitBtn"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

@@ -35,7 +35,7 @@
         android:layout_gravity="center"
         android:orientation="vertical">
         <EditText
-            android:id="@+id/share_edittext"
+            android:id="@+id/user_share_contentEt"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -43,7 +43,7 @@
             android:layout_margin="20dp"
             android:maxLines="3"/>
         <Button
-            android:id="@+id/share"
+            android:id="@+id/user_share_shareBtn"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="分享"

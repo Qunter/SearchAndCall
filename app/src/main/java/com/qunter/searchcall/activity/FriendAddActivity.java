@@ -20,7 +20,6 @@ import com.qunter.searchcall.base.BaseActivity;
 import com.qunter.searchcall.entity.UserFriend;
 import com.qunter.searchcall.entity.UserInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
@@ -87,8 +86,8 @@ public class FriendAddActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_friend_add);
-        friendAddEt = (EditText) findViewById(R.id.friend_addEt);
-        friendAddTv = (TextView) findViewById(R.id.friend_addBtn);
+        friendAddEt = (EditText) findViewById(R.id.friend_add_addEt);
+        friendAddTv = (TextView) findViewById(R.id.friend_add_addBtn);
         friendAddBackBtn = (ImageView) findViewById(R.id.friend_add_backBtn);
         friendAddLinLayout = (LinearLayout) findViewById(R.id.friend_add_linearlayout);
 
@@ -257,7 +256,7 @@ public class FriendAddActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.friend_addBtn:
+            case R.id.friend_add_addBtn:
                 if(BmobUser.getCurrentUser(UserInfo.class).getUserNickname().equals(friendAddEt.getText().toString())){
                     Toast.makeText(getApplicationContext(), "不能添加自己为好友", Toast.LENGTH_SHORT).show();
                     break;

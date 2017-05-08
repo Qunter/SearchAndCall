@@ -1,7 +1,6 @@
 package com.qunter.searchcall.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,16 +40,16 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_event_create);
-        timeChooseView = (LinearLayout) findViewById(R.id.timeChooseView);
+        timeChooseView = (LinearLayout) findViewById(R.id.event_creat_timeChooseView);
         timePickerShow = new TimePickerShow(getApplicationContext());
         timeChooseView.addView(timePickerShow.timePickerView());
-        eventTitleEt = (EditText) findViewById(R.id.event_titleEt);
-        eventContentEt = (EditText) findViewById(R.id.event_contentEt);
-        eventGetEventStartTimeBtn = (Button) findViewById(R.id.event_getEventStartTimeBtn);
+        eventTitleEt = (EditText) findViewById(R.id.event_creat_titleEt);
+        eventContentEt = (EditText) findViewById(R.id.event_creat_contentEt);
+        eventGetEventStartTimeBtn = (Button) findViewById(R.id.event_creat_getEventStartTimeBtn);
         eventGetEventStartTimeBtn.setOnClickListener(this);
-        eventGetEventEndTimeBtn = (Button) findViewById(R.id.event_getEventEndTimeBtn);
+        eventGetEventEndTimeBtn = (Button) findViewById(R.id.event_creat_getEventEndTimeBtn);
         eventGetEventEndTimeBtn.setOnClickListener(this);
-        eventSubmitBtn = (Button) findViewById(R.id.event_submitBtn);
+        eventSubmitBtn = (Button) findViewById(R.id.event_creat_submitBtn);
         eventSubmitBtn.setOnClickListener(this);
         eventCreateBackBtn = (ImageView) findViewById(R.id.event_create_backBtn);
         eventCreateBackBtn.setOnClickListener(this);
@@ -60,7 +59,7 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.event_submitBtn: {
+            case R.id.event_creat_submitBtn: {
                 String eventSubmitTitle = eventTitleEt.getText().toString();
                 String eventSubmitContent = eventContentEt.getText().toString();
                 if (eventSubmitTitle.equals("") || eventSubmitContent.equals("")||eventGetEventStartTimeBtn.getText().toString().equals("获取活动开始时间")||eventGetEventEndTimeBtn.getText().toString().equals("获取活动结束时间")) {
@@ -92,7 +91,7 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
             }
-            case R.id.event_getEventStartTimeBtn:{
+            case R.id.event_creat_getEventStartTimeBtn:{
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String DateString = timePickerShow.getTxtTime("-", "-", " ", ":", ":", "");
@@ -103,7 +102,7 @@ public class EventCreateActivity extends BaseActivity implements View.OnClickLis
                 eventGetEventStartTimeBtn.setText(timePickerShow.getTxtTime("-", "-", " ", ":", ":", ""));
                 break;
             }
-            case R.id.event_getEventEndTimeBtn:{
+            case R.id.event_creat_getEventEndTimeBtn:{
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String DateString = timePickerShow.getTxtTime("-", "-", " ", ":", ":", "");

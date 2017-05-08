@@ -1,11 +1,7 @@
 package com.qunter.searchcall.activity;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,8 +16,8 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
  * Created by Administrator on 2016/10/24.
  */
 public class UserShareActivity extends BaseActivity {
-    private EditText editText;
-    private Button share;
+    private EditText contentEt;
+    private Button shareBtn;
     private ImageView userShareBackBtn;
     @Override
     protected void initVariablesAndService() {
@@ -31,14 +27,14 @@ public class UserShareActivity extends BaseActivity {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_user_share);
-        editText = (EditText)findViewById(R.id.share_edittext);
-        share = (Button)findViewById(R.id.share);
+        contentEt = (EditText)findViewById(R.id.user_share_contentEt);
+        shareBtn = (Button)findViewById(R.id.user_share_shareBtn);
         userShareBackBtn = (ImageView) findViewById(R.id.user_share_backBtn);
 
-        share.setOnClickListener(new View.OnClickListener() {
+        shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = editText.getText().toString();
+                String str = contentEt.getText().toString();
                 showShare(new String("给你们推荐个应用"),str.equals("")?new String("我正在使用寻呼,你们也来试试吧!"):str);
             }
         });

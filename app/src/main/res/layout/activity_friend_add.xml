@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <EditText
-            android:id="@+id/friend_addEt"
+            android:id="@+id/friend_add_addEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -43,7 +43,7 @@
             android:layout_marginTop="20dp"
             android:inputType="text" />
         <Button
-            android:id="@+id/friend_addBtn"
+            android:id="@+id/friend_add_addBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/ripple_button"
