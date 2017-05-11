@@ -126,7 +126,6 @@ public class FriendAddActivity extends BaseActivity implements View.OnClickListe
                     handler.sendEmptyMessage(ADDFRIENDASK);
                     //Toast.makeText(getApplicationContext(), user.getNickName()+"查询成功", Toast.LENGTH_SHORT).show();
                 } else {
-                    //Toast.makeText(getApplicationContext(), "查询失败"+e, Toast.LENGTH_SHORT).show();
                 }
             }
         });
