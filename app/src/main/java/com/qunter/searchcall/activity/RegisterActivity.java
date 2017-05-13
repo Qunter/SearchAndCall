@@ -59,7 +59,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     };
     @Override
     protected void initVariablesAndService() {
-        setIfImmersive(true);
+        setIfTranslucent(true);
         Bmob.initialize(this,"8da888d03200ff2f6b403d064b805d60");
     }
 

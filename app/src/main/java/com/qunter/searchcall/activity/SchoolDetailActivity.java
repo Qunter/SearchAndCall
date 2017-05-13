@@ -57,7 +57,7 @@ public class SchoolDetailActivity extends BaseActivity {
         //获取详情页链接
         detailUrl = getIntent().getExtras().get("detailUrl").toString();
         handler.sendEmptyMessage(GETDETAILDATA);
-        super.setIfImmersive(true);
+        super.setIfTranslucent(true);
     }
 
     @Override

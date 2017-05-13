@@ -26,7 +26,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     protected void initVariablesAndService() {
         //初始化bmob
         Bmob.initialize(this,"8da888d03200ff2f6b403d064b805d60");
-        super.setIfImmersive(true);
+        super.setIfTranslucent(true);
     }
 
     @Override

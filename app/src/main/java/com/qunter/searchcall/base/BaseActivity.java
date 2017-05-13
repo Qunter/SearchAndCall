@@ -17,14 +17,14 @@ import android.view.WindowManager;
 
 public abstract class BaseActivity extends Activity{
     //是否设置沉浸式
-    private boolean IfImmersive = false;
+    private boolean IfTranslucent = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initVariablesAndService();
         initViews(savedInstanceState);
-        if(IfImmersive){
-            initImmersive();
+        if(IfTranslucent){
+            initTranslucent();
         }
 
     }
@@ -36,13 +36,13 @@ public abstract class BaseActivity extends Activity{
     /**
      * 设置是否沉浸式  在子类中super调用
      */
-    public void setIfImmersive(boolean IfImmersive){
-        this.IfImmersive = IfImmersive;
+    public void setIfTranslucent(boolean IfTranslucent){
+        this.IfTranslucent = IfTranslucent;
     }
     /**
-     * 动态的设置状态栏  实现沉浸式状态栏
+     * 动态设置状态栏  实现透明式状态栏
      */
-    private void initImmersive () {
+    private void initTranslucent() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){//4.4 全透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
