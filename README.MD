@@ -38,7 +38,6 @@
 
 ![image5](https://github.com/Qunter/ImgForGithubRepository/blob/master/image/SearchAndCall5.gif)
 
-
 ### 主要功能（暂定）：
 * 1，学校资讯：提供校园资讯浏览，供学校提供相关信息展出供学生观看，方便学校开展相关宣传以及学校组织开展相关活动
 * 2，周边活动：提供校园出行活动，用户可以根据自己的需要选择自己想参加的活动进行参与或者发布活动
